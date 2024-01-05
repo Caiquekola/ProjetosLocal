@@ -3,16 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 
-package TicTacToe;
+package AedsRecursivo;
 
 
-public class main {
-    
+public class EXC5Aeds {
+
     
     public static void main(String[] args) {
-        //Objetivo fazer um jogo da velha
-        Interface.comecarJogo();
-        
         
     }
 

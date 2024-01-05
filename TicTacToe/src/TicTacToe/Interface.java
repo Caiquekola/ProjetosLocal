@@ -11,15 +11,15 @@ package TicTacToe;
 import java.util.Scanner;
 public class Interface {
     
-    Scanner scan = new Scanner(System.in);
-    char posicao,outraPartida;
-    char vetor[][] = new char[3][3];
-    int coluna,linha,numerador=1,jogadas=0,contador=1;
-    boolean fimdejogo = false;
-    char vencedor;
-    String onde;
+    static Scanner scan = new Scanner(System.in);
+    static char posicao,outraPartida;
+    static char vetor[][] = new char[3][3];
+    static int coluna,linha,numerador=1,jogadas=0,contador=1;
+    static boolean fimdejogo = false;
+    static char vencedor;
+    static String onde;
     
-    public void comecarJogo(){
+    public static void comecarJogo(){
         
         for (linha = 0; linha < 3; linha++) {
             for (coluna = 0; coluna < 3; coluna++) {
@@ -31,7 +31,7 @@ public class Interface {
         
         jogo();
     }
-    public void jogo(){
+    public static void jogo(){
         while(!fimdejogo){
             desenho();
             jogada();
@@ -40,7 +40,7 @@ public class Interface {
         desenho();
         outraPartida();
     }
-    public void teste(){
+    public static void teste(){
         
         coluna=0;
         //LINHAS
@@ -82,25 +82,25 @@ public class Interface {
         }
     }
     
-    public void desenho(){
+    public static void desenho(){
         
-            System.out.println("TicTacToe");
+            System.out.println("  TicTacToe\n");
             coluna=0;
             for (int i = 0; i < 3; i++) {
-                System.out.println("  "+vetor[i][coluna]+"|"+vetor[i][coluna+1]+"|"+vetor[i][coluna+2]);
-                System.out.println("  -----");
+                System.out.println("  "+vetor[i][coluna]+" | "+vetor[i][coluna+1]+" | "+vetor[i][coluna+2]);
+                System.out.println("  ----------");
                 
             
             
         }
         
     }
-    public void jogada(){
+    public static void jogada(){
         if(jogadas%2==0){
-                    System.out.print("Onde X: ");
+                    System.out.print("  \n  Onde X: ");
                     
         }else{
-                    System.out.print("Onde O: ");
+                    System.out.print("  \n  Onde O: ");
         }
         posicao = scan.next().charAt(0);
         contador=1;
@@ -125,7 +125,7 @@ public class Interface {
         
         
     }
-    public void outraPartida(){
+    public static void outraPartida(){
         System.out.println("Deseja jogar outra partida?(y/n)");
         outraPartida = scan.next().charAt(0);
         if(outraPartida=='y'|outraPartida=='Y'){
