@@ -1,0 +1,28 @@
+ public class MyClass {
+    public static void main(String args[]) {
+      int x=10;
+      int y=25;
+      int z=x+y;
+
+      System.out.println("Sum of x+y = " + z);
+    }
+}
+
+class DoublyLinkedList<E>(){
+    private int size;
+    
+}
+
+
+class Item<E>{
+    private E element;
+    private Item<E> next;
+    private Item<E> prev;
+    public Item<E>(Item<E> prev, E element, Item<E> next){
+        this.element = element;
+        this.prev = prev;
+        this.next = next;
+    }
+}
+
+
