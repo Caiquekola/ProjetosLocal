@@ -10,7 +10,14 @@
 
 class DoublyLinkedList<E>(){
     private int size;
+    private Item<E> list;
+    public DoublyLinkedList(){
+      size = 0;
+      list = new List<E>(null,null,null);
+    }
+    public DoublyLinkedList(E element){
     
+    }
 }
 
 
