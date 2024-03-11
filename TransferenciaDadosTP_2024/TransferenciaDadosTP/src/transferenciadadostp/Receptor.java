@@ -13,7 +13,7 @@ public class Receptor {
     public String getMensagem() {
         return mensagem;
     }
- 
+    
     private boolean decodificarDado(boolean bits[]){
         int codigoAscii = 0;
         int expoente = bits.length-1;
@@ -33,17 +33,33 @@ public class Receptor {
         return true;
     }
     
-    private void decoficarDadoCRC(){
-        
+    private void decodificarDadoCRC(boolean bits[],boolean polinomio[]){
+        boolean novosBits[] = bits;
+        for (int i = 0; i < bits.length-4; i++) {
+            if(bits[i]==false){
+                continue;
+            }
+            else{
+                int k = 0;
+                for (int j = i; j < i+5; j++) {
+                    bits[j] = !(bits[j]==polinomio[k]);
+                    k++;
+                }
+            }
+        }
+        for (int i = bits.length-4; i < bits.length; i++) {
+            novosBits[i] = bits[i];
+        }
         //implemente a decodificação Hemming aqui e encontre os 
         //erros e faça as devidas correções para ter a imagem correta
     }
     
     
     //recebe os dados do transmissor
-    public boolean receberDadoBits(boolean bits[]){
+    public boolean receberDadoBits(boolean bits[],boolean polinomio[]){
         
         //aqui você deve trocar o médodo decofificarDado para decoficarDadoCRC (implemente!!)
+        decodificarDadoCRC(bits,polinomio);
         decodificarDado(bits);
         
         //será que sempre teremos sucesso nessa recepção

@@ -54,22 +54,24 @@ public class Transmissor {
         boolean novoBits[] = new boolean[bits.length+4];
         //Completando o bit
         for (int i = 0; i < novoBits.length; i++) {
+            
             if(i<bits.length){
                 novoBits[i] = bits[i];    
             }else{
                 novoBits[i] = false;
             }
+            
         }
         
         
         
         
-        return mensagemBitsCRC(bits,polinomio);
+        return mensagemBitsCRC(novoBits,polinomio);
     }
     private boolean[] mensagemBitsCRC(boolean bits[],boolean polinomio[]){
         //XOR
-        boolean bitComCRC[] = bits;
-        for (int i = 0; i < bits.length; i++) {
+        boolean novosBits[] = bits;
+        for (int i = 0; i < bits.length-4; i++) {
 //            if(i==0){
 //                continue;
 //            }else if(i<=bits.length-4){
@@ -84,12 +86,17 @@ public class Transmissor {
             }else if(bits[i] == false && i>=bits.length){
                 break;
             }else{
+                int k = 0;
                 for (int j = i; j < i+5; j++) {
-                    bits[j] = !(bits[j]==polinomio[j]);
+                    bits[j] = !(bits[j]==polinomio[k]);
+                    k++;
                 }
             }
         }
-        return bits;
+        for (int i = bits.length-4; i < bits.length; i++) {
+            novosBits[i] = bits[i];
+        }
+        return novosBits;
         
     }
     
@@ -102,12 +109,15 @@ public class Transmissor {
                         você pode modificar o método anterior também
                 boolean bitsCRC[] = dadoBitsCRC(bits);
             */
-            
+            boolean bitsCRC[] = dadoBitsCRC(bits);
+            //Bits finais para o receptor
+//            geradorRuido(bits);
+
             //add ruidos na mensagem a ser enviada para o receptor
-            geradorRuido(bits);
             
             //enviando a mensagem "pela rede" para o receptor (uma forma de testarmos esse método)
-            boolean indicadorCRC = receptor.receberDadoBits(bits);
+            boolean[] polinomio = {true,false,false,true,true};
+            boolean indicadorCRC = receptor.receberDadoBits(bitsCRC,polinomio);
             //o que faremos com o indicador quando houver algum erro? qual ação vamos tomar com o retorno do receptor
             
         }
