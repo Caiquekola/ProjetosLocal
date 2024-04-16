@@ -13,7 +13,7 @@ public class EXC3Aeds {
         if(Numero%Inicio==0){
             verdade=false;
         }
-        primo(Numero,Inicio+1);
+        return primo(Numero,Inicio+1);
     }
     
     public static void main(String[] args) {
